@@ -1,11 +1,12 @@
 import { Toggle } from "rsuite";
 import 'rsuite/Toggle/styles/index.css';
+import LogoItemCard from '../assets/images/logo-json-wizard.svg'
 
 export const CardsItem = ({ logo, name, description, isActive }) => {
   return (
     <div className="bg-Neutral-0 rounded-2xl shadow-md p-[15px] flex flex-col gap-y-4 border border-Neutral-200 dark:bg-Neutral-800 dark:border-Neutral-600">
       <div className="flex flex-row gap-x-4 items-start">
-        <img className="w-[50px]" src={logo} alt="" />
+        <img className="w-[50px]" src={LogoItemCard} alt="" />
         <div>
           <h4 className="font-semibold mb-[5px] dark:text-Neutral-0">{name}</h4>
           <p className="text-[13px] dark:text-Neutral-0">{description}</p>
