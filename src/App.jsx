@@ -10,6 +10,8 @@ function App() {
   const [cargarCard, setCargarCard] = useState([]);
   const [activeButton, setActiveButton] = useState(valSavedButtonFilter);
 
+  const [dataportafolio, setdataportafolio] = useState([]);
+
   const buttonFilterList = [
     {
       id: 1,
@@ -28,13 +30,30 @@ function App() {
     },
   ];
 
+  const getadminportafolio = async () =>{
+    try {
+      const rest = await fetch( "https://felipecalixtro.com/admin-portafolio/wp-json/wp/v2/proyectos" );
+      const dataportafolio = await rest.json();
+
+      return dataportafolio;
+    } catch (error) {
+      console.error("Error al cargar el archivo JSON:", error);
+    }
+  };
+
   useEffect(() => {
     const cardData = async () => {
       const datosTarjeta = await getDataCard(activeButton);
       setCargarCard(datosTarjeta);
     };
 
+    const getdata = async () => {
+      const getdatadmin = await getadminportafolio();
+      setdataportafolio( getdatadmin );
+    }
+
     cardData();
+    getdata();
   }, []); // <-- Corchetes vacíos para que SOLO se ejecute UNA VEZ al cargar la página
 
   const handleChangeCardFilter = async (idButtonFilter) => {
@@ -59,6 +78,12 @@ function App() {
           {cargarCard.map((value) => {
             return <CardsItem key={value.name} {...value} />;
           })}
+        </section>
+
+        <section>
+          { dataportafolio.map( (value) => {
+            return <p key={value.id}>{ value.acf.imagen_proyecto.url }</p>
+          } )}
         </section>
       </section>
     </main>
