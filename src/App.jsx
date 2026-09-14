@@ -82,7 +82,7 @@ function App() {
 
         <section>
           { dataportafolio.map( (value) => {
-            return <p key={value.id}>{ value.acf.imagen_proyecto.url }</p>
+            return <img key={value.id} src={ value.acf.imagen_proyecto.url } />
           } )}
         </section>
       </section>
