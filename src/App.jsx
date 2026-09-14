@@ -79,12 +79,6 @@ function App() {
             return <CardsItem key={value.name} {...value} />;
           })}
         </section>
-
-        <section>
-          { dataportafolio.map( (value) => {
-            return <img key={value.id} src={ value.acf.imagen_proyecto.url } />
-          } )}
-        </section>
       </section>
     </main>
   );
